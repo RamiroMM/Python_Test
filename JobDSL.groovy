@@ -3,6 +3,9 @@ job('First-Job-Via-DSL'){
         scm{
                 git("https://github.com/RamiroMM/Python_Test.git", "main")
         }
+        triggers{
+                scm('* * * * *')
+        }
         steps{
                 shell("python3 test.py")
         }
