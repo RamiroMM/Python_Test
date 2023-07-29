@@ -13,5 +13,8 @@ pipeline {
         }
       }
     }
+    stage('Deploying to staging'){
+      build job: 'Deploy_to_Staging'
+    }
   }
 }
