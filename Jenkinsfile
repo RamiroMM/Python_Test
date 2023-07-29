@@ -1,25 +1,16 @@
 pipeline {
   agent any
   stages {
-    stage('Init'){
+    stage('Initialize'){
       steps{
-        echo 'Hi this is Ramiro Mora, from Mexico'
-        echo 'This is a new test...'
+        echo 'Executing commands...'
+        sh 'python3 test.py'
       }
-    }
-    stage('Build'){
-      steps{
-        echo 'Building the sample project'
-      }
-    }
-    stage('Deploy'){
-      steps{
-        echo 'Deploying to staging'
-      }
-    }
-    stage('Deploy to Prod'){
-      steps{
-        echo 'Deploying to Production'
+      post {
+        success {
+          echo 'Now Archiving the artifacts...'
+          archiveArtifacts artifacts: '**/*.html'
+        }
       }
     }
   }
